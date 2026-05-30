@@ -34,7 +34,6 @@ df['AQI'] = pd.to_numeric(df['AQI'], errors='coerce')
 
 df['timestamp'] = pd.to_datetime(
     df['timestamp'],
-    format='%d-%m-%Y %H:%M',
     errors='coerce'
 )
 
@@ -42,7 +41,7 @@ df['year'] = df['timestamp'].dt.year
 
 df = df.fillna(df.mean(numeric_only=True))
 
-df = df.dropna()
+df = df.dropna(subset=['timestamp'])
 
 df['month'] = df['timestamp'].dt.month
 
